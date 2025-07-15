@@ -76,4 +76,30 @@ values
 
 select * from time;
 
+create table driving_license(
+id int auto_increment primary key, # primary key can't be null and must be unique
+# auto_increment : Automatically increases numeric value by 1 when inserting new rows. Usually used with primary key.
+f_name varchar(20) not null, # you can't have a null value.
+l_name varchar(20) not null,
+email_id varchar(30) unique, # Used when you want no duplicates 
+phone_no varchar(15) unique); # we can have more than one unique values but primary key should be only one.
 
+insert into driving_license(f_name,l_name,email_id,phone_no)
+values
+("avinash","pitti","avinash123@gmail.com","6305577885"),
+("amar","yadav","amaryadav12@gmail.com","8741235783"),
+("rakesh","sharma","rakesh222@gmail.com","7373737373");
+
+insert into driving_license(f_name,l_name,email_id,phone_no)
+values
+("srinivas","nani","srinivas321@gmail.com","7823419919");
+
+# While doing if you enter any duplicate entries or miss the column name which is not null it shows error and it moves to the next id.
+
+insert into driving_license(f_name,l_name,email_id,phone_no)
+values
+("vinod","kumar","vinod777@gmail.com","7823419910");
+
+
+
+select * from driving_license;
