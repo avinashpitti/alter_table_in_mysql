@@ -100,6 +100,93 @@ insert into driving_license(f_name,l_name,email_id,phone_no)
 values
 ("vinod","kumar","vinod777@gmail.com","7823419910");
 
-
-
 select * from driving_license;
+
+
+
+create table products(
+product_id int,
+product_name varchar(40),
+price decimal(5,2)
+);
+
+alter table products
+add constraint
+unique(product_name);
+
+insert into products
+values
+(100,"hamburger",3.99),
+(101,"fries",1.89),
+(102,"soda",1.00),
+(103,"icecream",1.49);
+#(104,"fries",1.75) if we give this it shows duplicate entry due to unique keyword.
+
+alter table products
+modify price decimal(4,2) not null;
+
+# insert into products(product_id,product_name)
+# values
+# (104,"pizza"); 	# It shows error because column can't be null.
+
+insert into products
+values
+(104,"pizza",0); # It accepts zero. It is not a null value.
+
+select * from products;
+
+create table customers(
+customer_id int primary key auto_increment,
+first_name varchar(50),
+last_name varchar(50)
+);
+
+insert into customers(first_name,last_name)
+values
+("Fred","Fish"),
+("Larry","Lobster"),
+("Bubble","Bass");
+
+select * from customers;
+
+create table transactions(
+transaction_id int auto_increment primary key,
+amount decimal(5,2),
+customer_id int,
+# you can see foreign key under table transactions foreign keys like transactions_ibfk_1
+foreign key(customer_id) references customers(customer_id) 
+);
+
+alter table transactions
+auto_increment =1000;
+
+insert into transactions(amount,customer_id)
+values
+(4.99,3),
+(2.89,2),
+(3.38,3),
+(4.99,1);
+
+select * from transactions;
+
+select * from customers;
+
+# delete from customers where customer_id=3; # can't delete or update a parent row. A foreign key constraint fails.
+
+insert into transactions(amount,customer_id)
+values
+(1.00,null);
+
+select * from customers;
+
+insert into customers(first_name,last_name)
+values
+("Poppy","Puff");
+
+select * from customers;
+
+select * from transactions;
+
+
+
+
